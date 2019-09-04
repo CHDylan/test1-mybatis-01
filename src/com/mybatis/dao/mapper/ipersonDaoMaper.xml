@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--接口的目录地址-->
+<mapper namespace="com.mybatis.dao.IPersonDao">
+
+    <!--删除-->
+    <delete id="deletePersonId" parameterType="java.lang.Integer">
+        DELETE   FROM   Studnet  where  id=#{id}
+    </delete>
+<!--查询-->
+
+    <select id="selectPerson" resultType="studnet"  parameterType="com.mybatis.pojo.Person"  >
+        select * from Studnet  WHERE   id=#{studnet.id}
+    </select>
+
+    <!--添加-->
+    <insert id="addPerson"     parameterType="com.mybatis.pojo.Person">
+
+        INSERT  INTO   Studnet(name,monery)  VALUES  (#{studnet.name},#{studnet.monery})
+
+    </insert>
+
+    <!--修改-->
+    <!--修改-->
+    <update id="updateselectPerson" parameterType="com.mybatis.pojo.Person" >
+        UPDATE   Studnet SET   name=#{studnet.name},monery=#{studnet.monery} WHERE   id  = #{studnet.id}
+    </update>
+
+</mapper>

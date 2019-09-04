@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--接口的目录地址-->
+<mapper namespace="com.mybatis.dao.IStudentArryOrMapOrList">
+
+
+
+<!--查询
+还能使用注解来讲性编写sql
+-->
+    <select id="selectArray" resultType="studnet"  >
+        select * from Studnet WHERE   id  = #{array[0]}
+    </select>
+    <!--查询-->
+    <select id="selectList" resultType="studnet"  >
+        select * from Studnet WHERE   name  = #{list[0]}  and monery=#{list[1]}
+    </select>
+
+    <!--查询
+     select * from Studnet WHERE   name = 老王
+    -->
+    <select id="selectMap" resultType="studnet"  >
+         select * from Studnet WHERE   ${nameKey} = #{nameValeus}
+    </select>
+
+
+
+</mapper>

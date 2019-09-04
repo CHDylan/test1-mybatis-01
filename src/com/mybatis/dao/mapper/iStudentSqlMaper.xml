@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--接口的目录地址-->
+<mapper namespace="com.mybatis.dao.IStudentSql">
+
+
+    <sql id="studnetSQL">
+          SELECT   * FROM  Studnet
+    </sql>
+    <select id="selectStudentSqlIf" resultType="studnet"  parameterType="studnet">
+      <include refid="studnetSQL"></include>
+     <where>
+
+           <if test="name !=null and name!='' ">
+               name=#{name}
+           </if>
+           <if test="monery !=null and monery!=0 ">
+              AND  monery=#{monery}
+           </if>
+
+     </where>
+
+
+    </select>
+
+
+    
+    <!--select * from  where  id  in(8,9,10,11)
+
+    SELECT * FROM Studnet WHERE id in ( ? , ? , ? , ? -->
+    <select id="selectStudentSqlFor"  resultType="studnet"  parameterType="studnet">
+        <include refid="studnetSQL"></include>
+        <where>
+        id in
+            <foreach collection="arryaylist" item="arr" open="(" separator="," close=")">
+                #{arr}
+            </foreach>
+        </where>
+
+    </select>
+    
+
+</mapper>

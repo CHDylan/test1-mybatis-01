@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com">
+    <!--查询sql
+    resultType:指定返回的参数的类型
+    parameterType  : 指定传入的参数类型
+    -->
+    <!--*${}  类型SQL拼接  容易出现sql注入的问题
+           #{}  类似jdbc中预编译 ： ?占位符-->
+    <select id="selectUsers"  parameterType="java.lang.Integer" resultType="com.mybatis.pojo.Studnet" >
+        select * from  Studnet  WHERE   id = #{ids}
+    </select>
+
+    <!--<select id=""-->
+
+    <!--模糊查询-->
+    <select id="selectLike" resultType="com.mybatis.pojo.Studnet" parameterType="java.lang.String">
+       select * from Studnet s WHERE s.`name` like  "%"#{NAMES}"%"
+    </select>
+
+
+    <!--添加数据-->
+
+    <insert id="inserStudent"  parameterType="com.mybatis.pojo.Studnet">
+
+    INSERT  INTO   Studnet(name,monery)  VALUES  (#{name},#{monery})
+
+    </insert>
+
+
+
+    <!--修改-->
+    <update id="updateStudent" parameterType="com.mybatis.pojo.Studnet" >
+        UPDATE   Studnet SET   name=#{name},monery=#{monery} WHERE   id  = #{id}
+    </update>
+
+
+
+<!--删除-->
+    <delete id="deleteStudent" parameterType="com.mybatis.pojo.Studnet">
+  <![CDATA[
+        DELETE   FROM   Studnet  where   name=#{name} and monery=#{monery}  and  monery > #{monery}
+   ]]>
+    </delete>
+
+
+</mapper>

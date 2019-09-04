@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--接口的目录地址-->
+<mapper namespace="com.mybatis.dao.IUsersOrStudent">
+
+    <resultMap id="map" type="usersOrStudent">
+
+        <!--
+        column  数据库表的字段名称
+        property  实体类属性的名称
+        javaType=""   实体类属性的类型
+        jdbcType=""  数据库表的字段的类型
+        使用默认的
+        -->
+        <id column="id" property="ids"></id>
+        <result column="name" property="names"></result>
+        <result column="monery" property="monerys"></result>
+
+    </resultMap>
+
+
+<!--查询-->
+    <select id="selectUsersOrStudentList" resultType="usersOrStudent"  resultMap="map"  >
+        select * from Studnet
+    </select>
+
+
+
+</mapper>

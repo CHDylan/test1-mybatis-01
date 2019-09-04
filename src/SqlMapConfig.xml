@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="db.properties"></properties>
+    <typeAliases>
+        <!--别名-->
+       <!-- <typeAlias type="com.mybatis.pojo.Studnet" alias="stu"></typeAlias>-->
+<!--该包路径下所有的类，而别名就是类的名称并且首字母小写-->
+         <package name="com.mybatis.pojo"></package>
+
+    </typeAliases>
+
+
+
+    <environments default="development">
+        <environment id="development">
+            <!--使用jdbc的事务-->
+            <transactionManager type="JDBC"/>
+            <!--连接数据库的信息-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc_driver}"/>
+                <property name="url" value="${jdbc_rul}"/>
+                <property name="username" value="${jdbc_users}"/>
+                <property name="password" value="${jdbc_pwd}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+
+    <mappers>
+        <!--这里就是执向，Wimbledon编写sql语句的文件.xml-->
+        <mapper resource="com/mybatis/pojo/studnetMapper.xml"/>
+        <mapper resource="com/mybatis/dao/mapper/iusesDaoMaper.xml"/>
+        <mapper resource="com/mybatis/dao/mapper/ipersonDaoMaper.xml"/>
+        <mapper resource="com/mybatis/dao/mapper/iUsersOrStudentMapper.xml"/>
+        <mapper resource="com/mybatis/dao/mapper/iStudentArryOrMapOrListMapper.xml"/>
+        <mapper resource="com/mybatis/dao/mapper/iStudentSqlMaper.xml"/>
+        <!--指定对应的Class接口
+           一般用在注解上面
+        -->
+         <mapper class="com.mybatis.dao.IStudentDao"></mapper>
+
+        <!--
+         如指定了包的时候，那么当前包下的接口和mapper文件的名称一致还要是同级
+        -->
+      <!-- <package name="com.mybatis.dao.mapper"></package>-->
+
+    </mappers>
+</configuration>
